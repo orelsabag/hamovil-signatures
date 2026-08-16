@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>חתימת מייל — עלי אסדי</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#eef0f4;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#1f2433;
+       display:flex;flex-direction:column;align-items:center;gap:20px;padding:34px 16px 60px}
+  .head{text-align:center;max-width:520px}
+  .head .ey{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#ec1c22;font-weight:700;margin:0 0 6px}
+  .head h1{margin:0;font-size:22px;font-weight:800}
+  .head p{margin:8px 0 0;font-size:14px;color:#6b7280;line-height:1.6}
+  .card{background:#fff;border-radius:14px;padding:30px 34px;box-shadow:0 16px 40px rgba(40,55,145,.12),0 2px 6px rgba(0,0,0,.06);max-width:520px;width:100%}
+  .btn{appearance:none;border:0;cursor:pointer;background:#283791;color:#fff;font-size:15px;font-weight:700;
+       padding:13px 26px;border-radius:10px;font-family:inherit;box-shadow:0 6px 16px rgba(40,55,145,.3);transition:.15s}
+  .btn:hover{background:#1f2b73;transform:translateY(-1px)}
+  .btn.ok{background:#059669;box-shadow:0 6px 16px rgba(5,150,105,.3)}
+  .steps{max-width:520px;font-size:13px;color:#6b7280;line-height:1.9;text-align:center}
+  .steps b{color:#1f2433}
+</style>
+</head>
+<body>
+  <div class="head">
+    <p class="ey">חתימת מייל · קבוצת המוביל החדש</p>
+    <h1>עלי אסדי</h1>
+    <p>זו החתימה שלך. הלוגו למטה מונפש. לחץ על הכפתור כדי להעתיק אותה, והדבק בהגדרות החתימה ב-Gmail.</p>
+  </div>
+
+  <div class="card">
+    <!-- ===== SIGNATURE ===== -->
+    <div id="sig">
+      <table dir="rtl" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;">
+        <tr><td style="padding:0;"><span style="font-size:17px;font-weight:bold;color:#283791;line-height:1.2;">עלי אסדי</span></td></tr>
+        <tr><td style="padding:2px 0 0;"><span style="font-size:12px;font-weight:bold;color:#ec1c22;letter-spacing:.3px;">מנהל כללי</span></td></tr>
+        <tr><td style="padding:10px 0 9px;"><div style="width:150px;height:2px;background:#ec1c22;line-height:2px;font-size:0;">&nbsp;</div></td></tr>
+        <tr><td style="padding:1px 0;font-size:12px;color:#333;"><a href="tel:+972505205406" style="color:#283791;text-decoration:none;"><span style="color:#ec1c22;font-size:13px;">&#9742;</span>&nbsp;&nbsp;050-520-5406</a></td></tr>
+        <tr><td style="padding:1px 0;font-size:12px;color:#333;"><a href="mailto:ali@hmovil.co.il" style="color:#283791;text-decoration:none;"><span style="color:#ec1c22;font-size:13px;">&#9993;</span>&nbsp;&nbsp;ali@hmovil.co.il</a></td></tr>
+        <tr><td style="padding:11px 0 0;"><a href="https://hamovil.co.il" style="text-decoration:none;"><img src="https://orelsabag.github.io/hamovil-signatures/logo-hamovil-new.gif" width="150" height="82" alt="קבוצת המוביל החדש — הובלות ומנופים" style="display:block;border:0;outline:none;"></a></td></tr>
+      </table>
+    </div>
+    <!-- ===== END SIGNATURE ===== -->
+    <div style="margin-top:24px;text-align:center;">
+      <button id="copy" class="btn">📋 העתק את החתימה</button>
+    </div>
+  </div>
+
+  <div class="steps">
+    <b>התקנה ב-Gmail:</b> לחץ "העתק את החתימה" ← Gmail ← ⚙ הגדרות ← "הצג את כל ההגדרות" ← חתימה ←<br>
+    צור חתימה חדשה ← הדבק (Cmd/Ctrl+V) ← שמירת שינויים.
+  </div>
+
+<script>
+  const btn = document.getElementById('copy');
+  btn.addEventListener('click', async () => {
+    const html = document.getElementById('sig').innerHTML;
+    try{
+      await navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html], {type:'text/html'}),
+        'text/plain': new Blob(['עלי אסדי | מנהל כללי | 050-520-5406 | ali@hmovil.co.il'], {type:'text/plain'})
+      })]);
+      btn.textContent='✓ הועתק! עכשיו הדבק ב-Gmail'; btn.classList.add('ok');
+    }catch(e){
+      // fallback: select the signature so the user copies manually
+      const r=document.createRange(); r.selectNode(document.getElementById('sig'));
+      const s=getSelection(); s.removeAllRanges(); s.addRange(r);
+      try{document.execCommand('copy'); btn.textContent='✓ הועתק! הדבק ב-Gmail'; btn.classList.add('ok');}
+      catch(_){btn.textContent='סמן את החתימה ידנית והעתק';}
+    }
+  });
+</script>
+</body>
+</html>
