@@ -17,6 +17,6 @@
   </tr>
 </table></div><div style="margin-top:24px;text-align:center;"><button id="copy" class="btn">📋 העתק את החתימה</button></div></div>
 <div class="steps"><b>Gmail:</b> העתק ← ⚙ הגדרות ← "הצג את כל ההגדרות" ← חתימה ← חתימה חדשה ← הדבק ← שמור.</div>
-<a class="back" href="https://orelsabag.github.io/hamovil-signatures/">← כל החתימות</a>
+<a class="back" href="index.html">← כל החתימות</a>
 <script>var b=document.getElementById('copy');b.addEventListener('click',async function(){var h=document.getElementById('sig').innerHTML;try{await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([h],{type:'text/html'})})]);b.textContent='✓ הועתק! הדבק ב-Gmail';b.classList.add('ok');}catch(e){var r=document.createRange();r.selectNode(document.getElementById('sig'));var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');b.textContent='✓ הועתק!';b.classList.add('ok');}catch(_){b.textContent='סמן ידנית והעתק';}}});</script>
 </body></html>
